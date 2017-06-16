@@ -1,0 +1,41 @@
+<!-- Build a simple form that has an <input> where a user can fill in their favorite band, like mechlo and it will return a handful of songs by them or with their name in it.
+
+When the user types in a band name and presses the submit button, you should then make the search request. You can trap this with the onSubmit() event.
+
+Once you have the data, you should fetch the specific data and use the results to display a listing of songs related to the search term.
+
+Then to add some features, you should set it up so when a user clicks on one of the songs, it should then play in an <audio> tag that you've also added to the page. -->
+
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <link rel= "stylesheet" href="styles.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+      <title>TUNE YARD</title>
+   </head>
+   <body>
+      <div id="bodyWrap">
+
+         <header id="title"> TUNE YARD </header>
+
+         <div id="audioWrap">
+            <audio src="" id="audio" controls>
+               ATTN: message from your browser: "AUDIO? NOT IN MY YARD."
+            </audio>
+         </div>
+
+         <div id="searchForm">
+            <input type="text" id="searchText" placeholder="WHOSE TUNES?" for="submit">
+            <button type="submit" id="searchButton">SEARCH</button>
+         </div>
+
+      <div id="searchResults"></div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src= "main.js"></script>
+   </body>
+</html>
