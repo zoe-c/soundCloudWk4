@@ -21,7 +21,6 @@ var audio = document.getElementById('audio');
 // var searchForm = document.getElementById('searchForm');
 var searchInput = document.getElementById('searchInput');
 var submitButton = document.getElementById('submitButton');
-var searchResults = document.getElementById('searchResults');
 // var fetchAddress = "";
 
 
@@ -58,8 +57,27 @@ submitButton.addEventListener('click', function (event) {
                //  console.log(data.results);
 
                 //assign results to tracks
-                let tracks = data.results;
+                let tracks = data;
                 console.log(tracks);
+
+                function renderTracks() {
+                  return `
+                  <div id="searchResults">
+                     ${tracks.map(track =>
+                        `<ul class="track">
+                         <li><img src="${track.artwork_url}" alt="album-art-image"></li>
+                         <li>${track.title}</li>
+                         <li>${track.user.username}</li>
+                         </ul>
+                         `).join('')}
+                  </div>
+                  `;
+               }
+                        console.log(renderTracks());
+
+               let markup = `${renderTracks()}`;
+               document.getElementById('searchResults').innerHTML = markup;
+
 
 
                });
