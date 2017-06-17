@@ -55,7 +55,13 @@ audio {
    width: 100vw;
 }
 
-input {
+#searchText {
    width: 40vw;
    background: #F9F9F9;
+}
+
+#searchResults {
+   width: 100vw;
+   height: 90vw;
+   border: solid black 1px;
 }

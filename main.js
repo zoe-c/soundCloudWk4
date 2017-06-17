@@ -1,30 +1,84 @@
 console.log("hola!");
+/*
+  Here is a guide for the steps you could take:
+*/
+
+// 1. First select and store the elements you'll be working with
+
+
+// 2. Create your `onSubmit` event for getting the user's search term
+
+
+// 3. Create your `fetch` request that is called after a submission
+
+
+// 4. Create a way to append the fetch results to your page
+
+
+// 5. Create a way to listen for a click that will play the song in the audio play
+
+
 
 //ELEMENTS INTO VARIABLES
 var audio = document.getElementById('audio');
-var searchWrap = document.getElementById('searchForm');
+var searchForm = document.getElementById('searchForm');
 var searchText = document.getElementById('searchText');
-var searchButton = document.getElementById('searchButton');
-var searchResults = document.getElementById('searchResults')
+var submitButton = document.getElementById('submitButton');
+var searchResults = document.getElementById('searchResults');
+// var fetchAddress = "https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=";
+var addToFetch = '';
+
 
 console.log(audio);
-console.log(searchWrap);
+console.log(searchForm);
 console.log(searchText);
-console.log(searchButton);
+console.log(submitButton);
 console.log(searchResults);
 
-(function () {
-   'use strict';
 
-  fetch('https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=')
+
+
+
+
+
+submitButton.addEventListener('click', function (event){
+   addToFetch = searchText.value.toString();
+   console.log(addToFetch);
+
+   let fetchAddress = "https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=" + addToFetch;
+   console.log(fetchAddress);
+
+  fetch(fetchAddress)
    .then(
       function(response){
       if (response.status != 200) {
-         console.log("WHOA! Error: " + response.status);
+         console.log("NOT IN MY YARD: ERROR: " + response.status);
          return;
       }
+
       response.json().then(function(data) {
          console.log(data);
+
+         let tracks = data.results;
+         console.log(tracks);
+
+         function renderTracks() {
+            // let track = tracks[0];
+            for (track of tracks)
+            return `
+               <ul class="tracks"
+
+
+            `
+         }
+
+
+
+
+
+
+
+
 
          // //assign results to customers
          // let customers = data.results;
@@ -69,4 +123,4 @@ console.log(searchResults);
 
 
 
-})();
+});
