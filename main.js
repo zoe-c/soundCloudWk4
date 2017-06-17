@@ -18,63 +18,59 @@ console.log("hola!");
 
 //ELEMENTS INTO VARIABLES
 var audio = document.getElementById('audio');
-var searchForm = document.getElementById('searchForm');
+// var searchForm = document.getElementById('searchForm');
 var searchInput = document.getElementById('searchInput');
 var submitButton = document.getElementById('submitButton');
 var searchResults = document.getElementById('searchResults');
 // var fetchAddress = "";
-var addToFetch = "";
 
-console.log(audio);
-console.log(searchForm);
-console.log(searchInput);
-console.log(submitButton);
-console.log(searchResults);
+
+   console.log(audio);
+   // console.log(searchForm);
+   console.log(searchInput);
+   console.log(submitButton);
+   console.log(searchResults);
 
    //submit event
 submitButton.addEventListener('click', function (event) {
-   addToFetch = searchInput.value;
-   console.log(addToFetch);
+   let dirtySearch = searchInput.value;
+   // let cleanSearch = "";
+   console.log(dirtySearch);
 
-   //input cleanup still in event
-   // function cleanUp(str) {
-   //    return .split('').map(function(characters) {
-   //       var replacement = addToFetch[characters.toLowerCase()];
-   //       return replacement || characters;
-   //    }).join('');
-   // }
-   //
-   // function cleanUp() {
-   //    addToFetch.split('').map(addToFetch[i].toLowerCase());
-   // }
-   //
-   // addToFetch = cleanup()
+      let cleanSearch = dirtySearch.toLowerCase();
+      console.log(cleanSearch);
+
+
+      let addToFetch = cleanSearch;
+      console.log(addToFetch);
+
+
+      fetch('https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=' + addToFetch)
+        .then(
+           function(response){
+              if (response.status != 200) {
+                 console.log("WHOA! Error: " + response.status);
+                 return;
+               }
+
+               response.json().then(function(data) {
+                console.log(data);
+               //  console.log(data.results);
+
+                //assign results to tracks
+                let tracks = data.results;
+                console.log(tracks);
+
+
+               });
+
+
+            }
+         )
+
+        .catch(function(err) {
+         console.log('Fetch Error :-S', err);
+       });
+
+
 });
-
-// fetchAddress = "https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=" + addToFetch;
-
-fetch('https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=' + addToFetch)
-  .then(
-     function(response){
-        if (response.status != 200) {
-           console.log("WHOA! Error: " + response.status);
-           return;
-         }
-         
-         response.json().then(function(data) {
-          console.log("Here is the data: " + data);
-          console.log(data.results);
-
-          //assign results to tracks
-          let tracks = data.results;
-          console.log(tracks);
-
-
-         });
-
-
-      }
-   )
-  .catch(function(err) {
-   console.log('Fetch Error :-S', err);
- });

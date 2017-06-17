@@ -51,11 +51,11 @@ audio {
    width: 75%;
 }
 
-#searchForm {
+/*#searchForm {
    width: 100vw;
-}
+}*/
 
-#searchText {
+#searchIput {
    width: 40vw;
    background: #F9F9F9;
 }
