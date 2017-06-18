@@ -32,53 +32,70 @@ var submitButton = document.getElementById('submitButton');
 
    //submit event
 submitButton.addEventListener('click', function (event) {
-   let dirtySearch = searchInput.value;
-   // let cleanSearch = "";
-   console.log(dirtySearch);
+   //NEED A BETTER WAY TO FILTER/ SHAPE INPUT VALUE TO BROADEN SEARCH RESULTS
+   //DIFFERENT RESULTS COME BACK// SEARCH IS CASE SENSITIVE.
+   //ASK ABOUT THIS
+   // ----------------CLEANUP ATTEMPT 1 VVVVVV------------------------------
+   // let dirtySearch = searchInput.value;
+   // // let cleanSearch = "";
+   // console.log(dirtySearch);
+   //
+   //    let cleanSearch = dirtySearch.toLowerCase();
+   //    console.log(cleanSearch);
 
-      let cleanSearch = dirtySearch.toLowerCase();
-      console.log(cleanSearch);
+      //
+      // let addToFetch = cleanSearch;
+      // console.log(addToFetch);
 
-
-      let addToFetch = cleanSearch;
-      console.log(addToFetch);
-
-
+      let addToFetch = searchInput.value;
       fetch('https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=' + addToFetch)
         .then(
            function(response){
               if (response.status != 200) {
-                 console.log("WHOA! Error: " + response.status);
+                 console.log("FIRE ANTS! Error: " + response.status);
                  return;
                }
 
                response.json().then(function(data) {
-                console.log(data);
-               //  console.log(data.results);
+                  console.log(data);
 
-                //assign results to tracks
-                let tracks = data;
-                console.log(tracks);
+                     //assign results to tracks
+                  let tracks = data;
+                  console.log(tracks);
 
-                function renderTracks() {
-                  return `
-                  <div id="searchResults">
-                     ${tracks.map(track =>
-                        `<ul class="track">
-                         <li><img src="${track.artwork_url}" alt="album-art-image"></li>
-                         <li>${track.title}</li>
-                         <li>${track.user.username}</li>
-                         </ul>
-                         `).join('')}
-                  </div>
-                  `;
-               }
-                        console.log(renderTracks());
+                  function renderTracks() {
+                     return `
+                        ${tracks.map(track =>
+                           `<ul class="track">
+                            <li><img src="${track.artwork_url}" alt="album-art-image"></li>
+                            <li><a href="#" class="audioTrigger">${track.title}</a></li>
+                            <li>${track.user.username}</li>
+                            </ul>
+                            `).join('')}
 
-               let markup = `${renderTracks()}`;
-               document.getElementById('searchResults').innerHTML = markup;
+                     `;
+                  }
+                  console.log(renderTracks());
 
 
+                  let markup = `${renderTracks()}`;
+                  document.getElementById('searchResults').innerHTML = markup;
+
+                  //check each stream_url and waveform_url..find out which one you need to send to audio src
+                  for (track of tracks) {
+                     console.log (track.stream_url);
+                     console.log(track.waveform_url);
+                  }
+
+
+
+                  // let audioTrigger = document.querySelectorAll('a');
+                  // for (i = 0; i <= audioTrigger.length - 1; i++) {
+                  //    audioTrigger[i].addEventListener('click', function(event) {
+                  //    audio.src = "${tracks.track.stream_url} + /?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
+                  //    fetch(${tracks.track.stream_url})
+                  //    });
+                  // }
 
                });
 
