@@ -24,7 +24,7 @@ var submitButton = document.getElementById('submitButton');
 // var fetchAddress = "";
 
 
-   console.log(audio);
+   // console.log(audio);
    // console.log(searchForm);
    console.log(searchInput);
    console.log(submitButton);
@@ -63,13 +63,15 @@ submitButton.addEventListener('click', function e(event) {
                   let tracks = data;
                   console.log(tracks);
 
+                  var clientId = "/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
                   function renderTracks() {
                      return `
                         ${tracks.map(track =>
                            `<ul class="track">
                             <li><img src="${track.artwork_url}" alt="oops!-caught-in-the-cloud"></li>
-                            <li class="li1"><button type="button" id="${track.id}" class="audioTrigger">${track.title}</button></li>
+                            <li class="li1">${track.title}</li>
                             <li class="li2">${track.user.username}</li>
+                            <li><audio src="${track.stream_url}${clientId}" controls= "controls"></audio><li>
                             </ul>
                             `).join('')}
 
@@ -82,40 +84,34 @@ submitButton.addEventListener('click', function e(event) {
                   document.getElementById('searchResults').innerHTML = markup;
 
                   //check each stream_url and waveform_url..find out which one you need to send to audio src
-                  for (track of tracks) {
+                  // for (track of tracks) {
                      // console.log (track.stream_url);
                      // console.log(track.waveform_url);
                      // console.log(track.permalink_url);
-                     console.log(track.id);
-                  }
-
-                  var clientId = "?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
-                  function audioConnect() {
-                     var audio = document.getElementById('audio');
-                     var audioTrigger = document.getElementsByClassName('audioTrigger');
-                     audioTrigger.addEventListener('click', function (event) {
-                        if (e.target.class == "audioTrigger") {
-                           // audio.src = "https://api.soundcloud.com/tracks/" + ${track.id} + "/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
-                           // audio.src = "https://api.soundcloud.com/tracks/" + e.target.id + "/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94" ;
-                           // audio.src =  track.stream_url + client_id;
-                           // audio.src += e.target.id + clientId;
-                           let newSource = "https://api.soundcloud.com/tracks" + e.target.id + clientId;
-                           audio.setAttribute("url", newSource);
-                        }
-
-                        console.log(audio.src)
-
-                     })
-
-                     // for (i = 0; i <= audioTrigger.length - 1; i++) {
-                     //    audioTrigger[i].addEventListener('click', function(event) {
-                     //    audio.src = "${tracks.track.stream_url} + /?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
-                     //    fetch(${tracks.track.stream_url})
-                     //    });
-                     // }
+                  //    console.log(track.id);
+                  // }
 
 
-                  }
+                  // function audioConnect() {
+                  //    var audio = document.getElementById('audio');
+                  //    var audioTrigger = document.getElementsByClassName('audioTrigger');
+                  //    audioTrigger.addEventListener('click', function (event) {
+                  //       if (e.target.class == "audioTrigger") {
+                  //          // audio.src = "https://api.soundcloud.com/tracks/" + ${track.id} + "/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
+                  //          // audio.src = "https://api.soundcloud.com/tracks/" + e.target.id + "/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94" ;
+                  //          // audio.src =  track.stream_url + client_id;
+                  //          // audio.src += e.target.id + clientId;
+                  //          let newSource = "https://api.soundcloud.com/tracks/" + e.target.id + clientIdForStream;
+                  //          // audio.setAttribute("src", newSource);
+                  //          audio.src = newSource;
+                  //       }
+                  //
+                  //       console.log(audio.src)
+                  //
+                  //    })
+                  //
+                  //
+                  // }
 
 
                      // https://api.soundcloud.com/tracks/15578191/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94
