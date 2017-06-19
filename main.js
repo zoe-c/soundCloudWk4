@@ -17,7 +17,7 @@ console.log("hola!");
 
 
 //ELEMENT VARIABLES
-var audio = document.getElementById('audio');
+// var audio = document.getElementById('audio');
 // var searchForm = document.getElementById('searchForm');
 var searchInput = document.getElementById('searchInput');
 var submitButton = document.getElementById('submitButton');
@@ -68,7 +68,7 @@ submitButton.addEventListener('click', function e(event) {
                         ${tracks.map(track =>
                            `<ul class="track">
                             <li><img src="${track.artwork_url}" alt="oops!-caught-in-the-cloud"></li>
-                            <li class="li1"><a href="#" class="audioTrigger">${track.title}</a></li>
+                            <li class="li1"><button type="button" id="${track.id}" class="audioTrigger">${track.title}</button></li>
                             <li class="li2">${track.user.username}</li>
                             </ul>
                             `).join('')}
@@ -83,20 +83,46 @@ submitButton.addEventListener('click', function e(event) {
 
                   //check each stream_url and waveform_url..find out which one you need to send to audio src
                   for (track of tracks) {
-                     console.log (track.stream_url);
-                     console.log(track.waveform_url);
-                     console.log(track.permalink_url);
+                     // console.log (track.stream_url);
+                     // console.log(track.waveform_url);
+                     // console.log(track.permalink_url);
+                     console.log(track.id);
+                  }
+
+                  var clientId = "?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
+                  function audioConnect() {
+                     var audio = document.getElementById('audio');
+                     var audioTrigger = document.getElementsByClassName('audioTrigger');
+                     audioTrigger.addEventListener('click', function (event) {
+                        if (e.target.class == "audioTrigger") {
+                           // audio.src = "https://api.soundcloud.com/tracks/" + ${track.id} + "/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
+                           // audio.src = "https://api.soundcloud.com/tracks/" + e.target.id + "/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94" ;
+                           // audio.src =  track.stream_url + client_id;
+                           // audio.src += e.target.id + clientId;
+                           let newSource = "https://api.soundcloud.com/tracks" + e.target.id + clientId;
+                           audio.setAttribute("url", newSource);
+                        }
+
+                        console.log(audio.src)
+
+                     })
+
+                     // for (i = 0; i <= audioTrigger.length - 1; i++) {
+                     //    audioTrigger[i].addEventListener('click', function(event) {
+                     //    audio.src = "${tracks.track.stream_url} + /?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
+                     //    fetch(${tracks.track.stream_url})
+                     //    });
+                     // }
+
+
                   }
 
 
+                     // https://api.soundcloud.com/tracks/15578191/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94
 
-                  // let audioTrigger = document.querySelectorAll('a');
-                  // for (i = 0; i <= audioTrigger.length - 1; i++) {
-                  //    audioTrigger[i].addEventListener('click', function(event) {
-                  //    audio.src = "${tracks.track.stream_url} + /?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
-                  //    fetch(${tracks.track.stream_url})
-                  //    });
-                  // }
+
+
+
 
                });
 
