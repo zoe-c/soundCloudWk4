@@ -16,7 +16,7 @@ console.log("hola!");
 // You'll need to take the value from above and use that to build out your URL to send to SoundCloud. (don't forgot to send your API token as well)
 
 
-//ELEMENTS INTO VARIABLES
+//ELEMENT VARIABLES
 var audio = document.getElementById('audio');
 // var searchForm = document.getElementById('searchForm');
 var searchInput = document.getElementById('searchInput');
@@ -31,7 +31,7 @@ var submitButton = document.getElementById('submitButton');
    console.log(searchResults);
 
    //submit event
-submitButton.addEventListener('click', function (event) {
+submitButton.addEventListener('click', function e(event) {
    //NEED A BETTER WAY TO FILTER/ SHAPE INPUT VALUE TO BROADEN SEARCH RESULTS
    //DIFFERENT RESULTS COME BACK// SEARCH IS CASE SENSITIVE.
    //ASK ABOUT THIS
@@ -67,9 +67,9 @@ submitButton.addEventListener('click', function (event) {
                      return `
                         ${tracks.map(track =>
                            `<ul class="track">
-                            <li><img src="${track.artwork_url}" alt="album-art-image"></li>
-                            <li><a href="#" class="audioTrigger">${track.title}</a></li>
-                            <li>${track.user.username}</li>
+                            <li><img src="${track.artwork_url}" alt="oops!-caught-in-the-cloud"></li>
+                            <li class="li1"><a href="#" class="audioTrigger">${track.title}</a></li>
+                            <li class="li2">${track.user.username}</li>
                             </ul>
                             `).join('')}
 
@@ -85,6 +85,7 @@ submitButton.addEventListener('click', function (event) {
                   for (track of tracks) {
                      console.log (track.stream_url);
                      console.log(track.waveform_url);
+                     console.log(track.permalink_url);
                   }
 
 
@@ -109,3 +110,7 @@ submitButton.addEventListener('click', function (event) {
 
 
 });
+
+//ADD EVENT LISTENER TO PAGE FOR ENTER KEY PRESS
+// var searchForm = document.getElementById('searchForm');
+// function
