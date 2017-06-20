@@ -1,51 +1,32 @@
 console.log("hola!");
-/*
-  Here is a guide for the steps you could take:
-*/
 
-// 1. First select and store the elements you'll be working with
-// 2. Create your `onSubmit` event for getting the user's search term
-// 3. Create your `fetch` request that is called after a submission
-// 4. Create a way to append the fetch results to your page
-// 5. Create a way to listen for a click that will play the song in the audio play
+// KEYS:
+// https://api.soundcloud.com/tracks/15578191/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94
+// <li><audio src="${track.stream_url}${clientId}" controls= "controls"></audio><li>
 
-// Form Submission
-// You should use the onSubmit() method on your form. This will trap when the submit button was pressed, thus allowing you to write a handler function.
-// You'll also need to use the .value on the input to get the current value after the submission has happened.
-// Fetching Data
-// You'll need to take the value from above and use that to build out your URL to send to SoundCloud. (don't forgot to send your API token as well)
-
-
-//ELEMENT VARIABLES
-// var audio = document.getElementById('audio');
-// var searchForm = document.getElementById('searchForm');
+//Global Variables------------------------------------------------------
 var searchInput = document.getElementById('searchInput');
 var submitButton = document.getElementById('submitButton');
-// var fetchAddress = "";
+var searchResults;
+   // console.log(searchInput);
+   // console.log(submitButton);
+   // console.log(searchResults);
 
-
-   // console.log(audio);
-   // console.log(searchForm);
-   console.log(searchInput);
-   console.log(submitButton);
-   console.log(searchResults);
-
-   //submit event
+   //Submit Event
 submitButton.addEventListener('click', function e(event) {
-   //NEED A BETTER WAY TO FILTER/ SHAPE INPUT VALUE TO BROADEN SEARCH RESULTS
+
+   //NEED A BETTER WAY TO FILTER/ FORMAT INPUT VALUE TO BROADEN SEARCH RESULTS
    //DIFFERENT RESULTS COME BACK// SEARCH IS CASE SENSITIVE.
-   //ASK ABOUT THIS
-   // ----------------CLEANUP ATTEMPT 1 VVVVVV------------------------------
+   //ASK ABOUT THIS//*EDIT*/ >>>> asked about it.leave it as is for now. when fetching from an api, you cannot really change what/ how their system is programmed to return results...save this for later.
+   // ----------------CLEANUP v1---------------------------------------
    // let dirtySearch = searchInput.value;
-   // // let cleanSearch = "";
    // console.log(dirtySearch);
    //
    //    let cleanSearch = dirtySearch.toLowerCase();
    //    console.log(cleanSearch);
-
-      //
-      // let addToFetch = cleanSearch;
-      // console.log(addToFetch);
+   //
+   //    let addToFetch = cleanSearch;
+   //    console.log(addToFetch);
 
       let addToFetch = searchInput.value;
       fetch('https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=' + addToFetch)
@@ -57,46 +38,104 @@ submitButton.addEventListener('click', function e(event) {
                }
 
                response.json().then(function(data) {
-                  console.log(data);
+                  // console.log(data);
 
                      //assign results to tracks
                   let tracks = data;
-                  console.log(tracks);
+                  // console.log(tracks);
 
                   var clientId = "/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
                   function renderTracks() {
                      return `
                         ${tracks.map(track =>
                            `<ul class="track">
-                            <li><img src="${track.artwork_url}" alt="oops!-caught-in-the-cloud"></li>
-                            <li class="li1">${track.title}</li>
-                            <li class="li2">${track.user.username}</li>
-                            <li><audio src="${track.stream_url}${clientId}" controls= "controls"></audio><li>
+                            <li>
+                              <button class="audioTrigger" type="button" name="${track.stream_url}${clientId}">
+                                 <img src="${track.artwork_url}" alt="oops!-caught-in-the-cloud">
+                              </button>
+                            </li>
+                            <li>${track.title}</li>
+                            <li>${track.user.username}</li>
                             </ul>
                             `).join('')}
-
                      `;
                   }
-                  console.log(renderTracks());
-
+                  // console.log(renderTracks());
 
                   let markup = `${renderTracks()}`;
                   document.getElementById('searchResults').innerHTML = markup;
 
-                  //check each stream_url and waveform_url..find out which one you need to send to audio src
-                  // for (track of tracks) {
-                     // console.log (track.stream_url);
-                     // console.log(track.waveform_url);
-                     // console.log(track.permalink_url);
-                  //    console.log(track.id);
-                  // }
+
+// -----NOTE:FUNCTION TO LINK TO AUDIO. USE bodyWrap DIV AS THE PARENT// HANDLER. USE THE LI BUTTON IMG BE THE TARGET.
+            //optionA)upon click, make separate event to replace audio tag with that track's audio tag?
+            //optionB)when you renderTracks above, have the audio wrap render HIDDEN VIEW audio tags for each button? then attach      listeners that trigger the VIEW UNHIDDEN for the user to use?
+            // optionC) THIS IS WHAT YOU'VE BEEN TRYING TO DO: STORE CORRECTLY FORMATTED STREAM_URL IN THE BUTTON "NAME" ATTRIBUTE>> GRAB THAT ATTRIBUTE WHEN CLICKED AND ASSIGN IT TO THE AUDIO's SRC ATTRIBUTE. strange, but seemed much more do-able and here we are.
+
+
+
+            //Make sure triggers are working// stored in triggers array.
+                  var triggers = document.getElementsByClassName('audioTrigger');
+                  console.log(triggers);
+
+
+
+
+            //Grab the name attributes of each button (that store the stream_url and client id IN FORMAT ALREADY) to pass to the src of the audio tag.
+            //       var trigNameArray = [];
+            //       function grabNameArray(triggers) {
+            //          // let tempArray = [];
+            //          let i;
+            //          for (i = 0; i <= triggers.length - 1; i ++) {
+            //             // tempArray.push( triggers[i].getAttribute('name'));
+            //             trigNameArray.push(triggers[i]).name;
+            //          }
+            //          return trigNameArray;
+            //       }
+            //
+            //       var trigNameArray = grabNameArray(triggers);
+            //       console.log(trigNameArray);
+
+
+
+            //FIND A WAY TO ITERATE OVER THE ARRAY AND GET THE BUTTON TO ANNOUNCE WHICH INDEX IT IS...OR TO PRINT THE EXACT TRACK's NAME ATTRIBUTE (WHERE YOU'VE STORED THE CORRECTLY FORMATTED STREAM URL FOR YOUR AUDIO) (l-104)
+                  var parent = document.getElementById('bodyWrap').addEventListener('click', function (event) {
+                     event.target = triggers;
+                     console.log("getting closer!");
+
+                     var audioSRC = document.getElementById('audio').getAttribute("src");
+                     console.log(audioSRC);
+
+                     // // for (var i = 0; i <= triggers.length - 1; i++) {
+                     //    if (event.target ===  && event.target.class === 'audioTrigger') {
+                     //       // event.target = triggers[i];
+                     //       return event.target.name;
+                     //    }
+                     //    console.log(event.target.name);
+
+
+                     //****************************************ATTEMPT***************************************
+                     // var audioWrap = document.getElementById('audioWrap');
+                     // triggers.map(trigger => trigger.addEventListener('click', function (event) {
+                     //    event.target = audioWrap;
+                     //    var newAudio = `<audio src="${track.stream_url}${clientId}" controls= "controls"></audio>`
+                     //    audioWrap.prepend(newAudio);
+                     //
+                     // }));
+
+                     // function audioLink(){
+                     //    var audio = document.getElementById('audio').setAttribute("src", triggers.name);
+                     //    console.log(audio.src);
+                     // }
+
+
+                  });
 
 
                   // function audioConnect() {
                   //    var audio = document.getElementById('audio');
                   //    var audioTrigger = document.getElementsByClassName('audioTrigger');
                   //    audioTrigger.addEventListener('click', function (event) {
-                  //       if (e.target.class == "audioTrigger") {
+                  //       if (e.target.class === "audioTrigger") {
                   //          // audio.src = "https://api.soundcloud.com/tracks/" + ${track.id} + "/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94";
                   //          // audio.src = "https://api.soundcloud.com/tracks/" + e.target.id + "/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94" ;
                   //          // audio.src =  track.stream_url + client_id;
@@ -114,12 +153,6 @@ submitButton.addEventListener('click', function e(event) {
                   // }
 
 
-                     // https://api.soundcloud.com/tracks/15578191/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94
-
-
-
-
-
                });
 
 
@@ -134,5 +167,3 @@ submitButton.addEventListener('click', function e(event) {
 });
 
 //ADD EVENT LISTENER TO PAGE FOR ENTER KEY PRESS
-// var searchForm = document.getElementById('searchForm');
-// function

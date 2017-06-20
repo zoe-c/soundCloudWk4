@@ -60,9 +60,9 @@ h3 {
    /*border: solid black 1px;*/
 }
 
-/*audio {
+audio {
    width: 75%;
-}*/
+}
 
 #searchInput {
    width: 40vw;
@@ -103,7 +103,9 @@ li {
 img {
    border-radius: 2%;
 }
-a {
-   text-decoration: none;
-   color: black;
+
+.audioTrigger {
+   border: none;
+   background: none;
+   box-shadow: none;
 }
