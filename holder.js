@@ -34,8 +34,8 @@ submitButton.addEventListener('click', function e(event) {
                                  <img src="${track.artwork_url}" alt="oops!-caught-in-the-cloud" id="${track.stream_url}${clientId}">
                               </button>
                             </li>
-                            <li>${track.title}</li>
-                            <li>${track.user.username}</li>
+                            <li class="title">${track.title}</li>
+                            <li class="band">${track.user.username}</li>
                             </ul>
                             `).join('')}
                      `;
@@ -51,7 +51,6 @@ submitButton.addEventListener('click', function e(event) {
                      return document.getElementById('audioWrap').innerHTML = playTrack
 
                   });
-
 
                });
 
