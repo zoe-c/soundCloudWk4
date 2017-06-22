@@ -44,9 +44,8 @@ submitButton.addEventListener('click', function e(event) {
                   let markup = `${renderTracks()}`;
                   document.getElementById('searchResults').innerHTML = markup;
 
-
-                  var parent = document.getElementById('bodyWrap').addEventListener('click', function (event) {
-                     var triggers = document.getElementsByClassName('audioTrigger');
+                  var triggers = document.getElementsByClassName('audioTrigger');
+                  var parent = document.getElementById('searchResults').addEventListener('click', function (event) {
                      event.target = triggers;
                      let playTrack = `<audio src="${event.target.id}" id="audio" controls="controls"></audio>`
                      return document.getElementById('audioWrap').innerHTML = playTrack
@@ -67,4 +66,5 @@ submitButton.addEventListener('click', function e(event) {
 
 });
 
-//ADD EVENT LISTENER TO PAGE FOR ENTER KEY PRESS
+
+// NEED A WAY TO CLEAN UP THE CLICK LISTENER ON THE
