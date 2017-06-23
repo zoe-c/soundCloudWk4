@@ -10,6 +10,13 @@ var searchInput = document.getElementById('searchInput');
 var submitButton = document.getElementById('submitButton');
 var searchResults;
 
+
+window.addEventListener('scroll', function () {
+  document.body.classList[
+    window.scrollY > 20 ? 'add': 'remove'
+  ]('scrolled');
+});
+
    //Submit Event
 submitButton.addEventListener('click', function e(event) {
 
@@ -31,7 +38,7 @@ submitButton.addEventListener('click', function e(event) {
                            `<ul class="track">
                             <li>
                               <button class="audioTrigger" type="button">
-                                 <img src="${track.artwork_url}" alt="oops!-caught-in-the-cloud" id="${track.stream_url}${clientId}">
+                                 <img src="${track.artwork_url}" alt="oops!-caught-in-the-cloud" id="${track.stream_url}${clientId}" onerror="this.onerror=null;this.src='./images/cloud100.png';">
                               </button>
                             </li>
                             <li class="title">${track.title}</li>

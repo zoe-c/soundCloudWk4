@@ -22,12 +22,10 @@ html {
     to   { opacity: 1; }
 }
 
-
-
 #bodyWrap {
    width: 100vw;
-   min-height: 100%;
-   padding:1em 2em;
+   height: 100%;
+   padding:1em 2em 0 2em;
    position: relative;
    font-family: 'Roboto', sans-serif;
    display: flex;
@@ -40,12 +38,12 @@ html {
 #contentBeforeResults {
    width: 80vw;
    height: 90%;
-   background-color: #F9F9F9;
+   background-color: #EEEEEE;
    border-bottom: solid black 2px;
    border-right: border-bottom: solid black 1px;
    border-left: border-bottom: solid black 1px;
    border-radius: 4px;
-   -webkit-animation: fadein 6s;
+   -webkit-animation: fadein 2s;
 }
 
 header {
@@ -56,25 +54,27 @@ header {
    justify-content: center;
    align-items: center;
    text-align: center;
+
 }
 
 h1 {
    width: 100%;
-   font-size: 7vw;
-   -webkit-animation: fadein 4s;
+   font-size: 8vw;
+   -webkit-animation: fadein 1s;
+   -webkit-transition-delay: 3s;
 }
 
 h3 {
    width: 100%;
-   font-size:2.6vw;
+   font-size:2.5vw;
    font-weight: lighter;
-   -webkit-animation: fadein 7s;
-   -webkit-transition-delay: 1.5s;
+   -webkit-animation: fadein 5s;
+   -webkit-transition-delay: 4s;
 }
 
 #searchForm {
    width: 100%;
-   height: 10vw;
+   height: 15vw;
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -87,13 +87,17 @@ h3 {
    width: 40%;
    height: 60%;
    text-align: center;
+   font-weight: lighter;
+   font-size: 1.5vw;
+   margin-top: 2vw;
    background: white;
    border-radius: 3px;
    border: 1px solid transparent;
    border-top: none;
    border-bottom: 1px solid #DDD;
-   box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+   box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FBFBFB, 0 1px 0 #FBFBFB;
    -webkit-animation: fadein 4s;
+
 }
 
 #submitButton {
@@ -103,14 +107,8 @@ h3 {
    border-radius: 3.25px;
    border-bottom: 1.25px solid black;
    -webkit-animation: fadein 4s;
-
-   /*border: 1px solid transparent;
-   border-top: none;
-   border-left: 1px solid #DDD;
-   border-right: 1px solid #DDD;
-   border-bottom: 2px solid #DDD;
-   box-shadow: 0 1px 1.5px #ADABAE;*/
-
+   font-size: 1.75vw;
+   cursor: pointer;
 }
 
 #submitButton:hover {
@@ -136,8 +134,9 @@ h3 {
 
 audio {
    width: 40vw;
-   height: 10vw;
+   height: 6vw;
    padding: 2vw;
+   margin-top: 2vw;
 }
 
 
@@ -147,6 +146,7 @@ audio {
    grid-template-columns: 25% 25% 25% 25%;
    background-color: white;
    border-radius: 5px;
+   margin-bottom: 10vw;
 }
 
 ul {
@@ -162,15 +162,11 @@ ul {
    line-height: 1;
    text-transform:uppercase;
    font-size: 1.5vw;
-   background-color: #F9F9F9;
+   background-color: #EEEEEE;
    border-radius: 3.25px;
    border-bottom: 1.25px solid black;
-   -webkit-animation: fadein 3s;
+   -webkit-animation: fadein 2s;
 }
-
-/*ul:hover {
-   background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/19/Musical-note-symbol-in-circular-button-outlined-symbol.svg');
-}*/
 
 li {
    flex-grow: 1;
@@ -182,11 +178,13 @@ li {
 
 .title {
    text-transform: capitalize;
-   font-size: 1.7vw;
+   font-size: 1.5vw;
+   font-weight: lighter;
 }
 
 .audioTrigger {
    border-radius: 4px;
+   cursor: pointer;
 }
 
 img {
@@ -198,4 +196,39 @@ img:hover {
    box-shadow: 0 3px grey;
    -webkit-transform: scale(1.025, 1.025);
    -webkit-transition: all .2s ease;
+}
+
+
+footer {
+   width: 100vw;
+   height: 6vw;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: fixed;
+   right: 0;
+   bottom: 0;
+   left: 0;
+}
+
+#footerDiv {
+   position: relative;
+   width: 100vw;
+   height: 6vw;
+   background-image:url('./images/grass.png');
+   background-size: contain;
+   background-position: center;
+   /*border-top: solid black 2px;
+   border-right: solid black 1px;
+   border-left: solid black 1px;
+   border-radius: 3px;*/
+}
+
+#footerDiv:hover {
+   transform:rotateX(15deg);
+}
+
+body.scrolled #footerDiv {
+  opacity: 0.1;
+  transition: opacity .2s;
 }
