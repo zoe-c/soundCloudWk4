@@ -213,20 +213,20 @@ footer {
 
 #footerDiv {
    position: relative;
-   width: 100vw;
+   width: 95vw;
    height: 6vw;
    background-image:url('./images/grass.png');
    background-size: contain;
    background-position: center;
-   /*border-top: solid black 2px;
-   border-right: solid black 1px;
-   border-left: solid black 1px;
-   border-radius: 3px;*/
+   border-top: solid black 2px;
+   border-right: solid  #EEEEEE 1px;
+   border-left: solid  #EEEEEE 1px;
+   border-radius: 3px;
 }
 
-#footerDiv:hover {
+/*#footerDiv:hover {
    transform:rotateX(15deg);
-}
+}*/
 
 body.scrolled #footerDiv {
   opacity: 0.1;
