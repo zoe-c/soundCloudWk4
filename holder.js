@@ -3,13 +3,11 @@ console.log("hola!");
 
 // KEYS:
 // https://api.soundcloud.com/tracks/15578191/stream/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94
-// <li><audio src="${track.stream_url}${clientId}" controls= "controls"></audio><li>
 
-//Global Variables------------------------------------------------------
+//Global Variables
 var searchInput = document.getElementById('searchInput');
 var submitButton = document.getElementById('submitButton');
 var searchResults;
-
 
 window.addEventListener('scroll', function () {
   document.body.classList[
@@ -61,7 +59,6 @@ submitButton.addEventListener('click', function e(event) {
 
                });
 
-
             }
          )
 
@@ -69,8 +66,4 @@ submitButton.addEventListener('click', function e(event) {
          console.log('Fetch Error :-S', err);
        });
 
-
 });
-
-
-// NEED A WAY TO CLEAN UP THE CLICK LISTENER ON THE
