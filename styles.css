@@ -190,19 +190,8 @@ img:hover {
 footer {
   width: 100vw;
   height: 6vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
-  right: 0;
   bottom: 0;
-  left: 0;
-}
-
-#footerDiv {
-  position: relative;
-  width: 95vw;
-  height: 6vw;
   background-image:url('./images/grass.png');
   background-size: contain;
   background-position: center;
@@ -212,7 +201,27 @@ footer {
   border-radius: 3px;
 }
 
-body.scrolled #footerDiv {
+body.scrolled footer {
   opacity: 0.1;
   transition: opacity .2s;
+}
+
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575px) {
+
+}
+
+/*Small devices (landscape phones, less than 768px)*/
+@media (max-width: 767px) {
+
+}
+
+/*Medium devices (tablets, less than 992px)*/
+@media (max-width: 991px) {
+
+}
+
+/*Large devices (desktops, less than 1200px)*/
+@media (max-width: 1199px) {
+
 }
