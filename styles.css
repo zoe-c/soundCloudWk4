@@ -13,7 +13,6 @@
 
 html {
   width: 100vw;
-  /*min-height: 100%;*/
 }
 
 @-webkit-keyframes fadein {
@@ -195,18 +194,11 @@ footer {
   background-image:url('./images/grass.png');
   background-size: contain;
   background-position: center;
-  /*border-top: solid black 2px;*/
   border-right: solid  #EEEEEE 1px;
   border-left: solid  #EEEEEE 1px;
-  /*border-radius: 3px;*/
 }
 
-/*body.scrolled footer {
-  opacity: 0.1;
-  transition: opacity .2s;
-}*/
-
-/*MOBILE / SM*/
+/*MOBILE / SM */
 @media (max-width: 575px) {
 
   #bodyWrap {
