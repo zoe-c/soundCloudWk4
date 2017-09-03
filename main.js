@@ -1,6 +1,4 @@
 
-console.log("hola!");
-
 //Global Variables
 var searchInput = document.getElementById('searchInput');
 var submitButton = document.getElementById('submitButton');
