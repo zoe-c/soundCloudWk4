@@ -159,17 +159,18 @@ li {
 }
 
 .band, .title {
-  margin: 5px 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .band {
+  margin-bottom: 5px;
   font-size: 2vw;
   font-weight: bold;
 }
 
 .title {
+  margin: 5px 0;
   text-transform: capitalize;
   font-size: 1.5vw;
   font-weight: lighter;
@@ -254,9 +255,7 @@ footer {
   }
 
   .title {
-    text-transform: capitalize;
     font-size: 3.5vw;
-    font-weight: lighter;
   }
 
 }
