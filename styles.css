@@ -166,6 +166,7 @@ li {
 
 .band {
   font-size: 2vw;
+  font-weight: bold;
 }
 
 .title {
@@ -234,8 +235,6 @@ footer {
   #searchInput {
     width: 70%;
     height: 60%;
-    text-align: center;
-    font-weight: lighter;
     font-size: 2.5vw;
   }
 
@@ -247,18 +246,16 @@ footer {
   }
 
   #searchResults {
-    width: 100vw;
     grid-template-columns: 50% 50%;
   }
 
   .band {
     font-size: 4vw;
-    font-weight: bold;
   }
 
   .title {
     text-transform: capitalize;
-    font-size: 3vw;
+    font-size: 3.5vw;
     font-weight: lighter;
   }
 
